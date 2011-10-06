@@ -1,0 +1,26 @@
+<header>
+  <%= link_to root_path %>
+  <nav >
+  <ul>
+
+              <% if signed_in? %>
+                      <li><%=button_to current_user.name, current_user, :class => 'menu_button', :size => current_user.name.length * 10 , :method => :get%></li>
+              <% end %>
+            <li><%= button_to "Home", root_path, :class => 'menu_button'%></li>
+
+            <% if signed_in? %>
+                    <li><%= button_to "Settings", edit_user_path(current_user), :class => 'menu_button', :method => :get %></li>
+                    <li><%= button_to "Users", users_path, :class => 'menu_button', :method => :get %></li>
+
+              <% end %>
+              <% if signed_in? %>
+                      <li><%= button_to "Sign Out", signout_path, :class => 'menu_button' %>
+              <% else %>
+                      <li><%= button_to "Sign In", signin_path, :class => 'menu_button' %></li>
+              <% end %>
+    </ul>
+
+    </nav>
+
+</header>
+

@@ -1,0 +1,25 @@
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+        <% @users.each do |user| %> 
+                <li>
+                <% if !(current_user.id == user.id)  %>
+                        <%= link_to user.name, user %>
+                        <% if Admin.where(:user_id => current_user.id).count == 1 %>
+                                |Posts: <%= user.microposts.count %>
+                                |Comments: <%= user.comments.count %>
+                                |votes : <%= user.votes.count %>
+                                | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
+                                        :title => "Delete #{user.name}" %>
+                                        <% if Admin.where(:user_id => user.id).count != 1 %>
+                                | <%= link_to "Create Admin", {:action => 'create_admin', :id => user.id}%>
+
+                        <% end %>
+                        <% end %>
+                <% end %>
+                </li>
+        <% end %>
+</ul>
+<%= will_paginate %>
