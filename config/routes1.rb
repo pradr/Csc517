@@ -2,39 +2,37 @@ Project1::Application.routes.draw do
   get "comments/new"
   get "sessions/new"
 
-  #resources :users
   resources :users, :only => [:new, :create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy, :vote]
   resources :comments, :only => [:create, :destroy]
   resources :votes, :only => [:create, :vote_comments]
 
-   match 'users/create_admin', :to =>'users#create_admin'
+  match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+#  match '/microposts', :to => 'microposts#new'
+  match '/comments', :to => 'comments#new'
+  match '/votes', :to => 'votes#create'
+
   resources :pages do
             collection do
             post :search
             post :home
             end
   end
-
   resources :users do
             collection do
             post :create_admin
             end
   end
 
-
-  match '/signup',  :to => 'users#new'
-  match '/signin',  :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
-  match '/microposts', :to => 'microposts#new'
-  match '/comments', :to => 'comments#new'
-  match '/votes', :to => 'votes#create'
-
   get "pages/home"
   get "users/new"
   get "microposts/new"
   get "votes/new"
+
+#  get 'users/:id', :as => 'user', :to => 'users#user'
 
 
 

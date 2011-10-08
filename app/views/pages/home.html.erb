@@ -1,13 +1,13 @@
 <%= form_tag :method => :post, :controller => 'pages', :action => 'home' do %>
-        <%= text_field_tag 'word', @word, :size => '30' %> 
-        <%= submit_tag "Search"%>
+        <%= text_field_tag 'word', @word, :size => '30', :class => 'search_box' %> 
+        <%= submit_tag "Search" , :class => 'search_button'%>
 <% end %>
 
 <% if signed_in? %>
-        <table class="front" summary="For signed-in users">
+        <table  summary="For signed-in users">
                 <tr>
-                        <td class="main">
-                                <h1 class="micropost">Post your Message here!</h1>
+                        <td>
+                                <h4>Post your Message here!</h4>
                                 <%= render 'shared/micropost_form' %>
                                 <%= render 'shared/feed' %>
                         </td>
@@ -15,9 +15,5 @@
                 </tr>
         </table>
 <% else %>
-        <h1>LiveBook</h1>
-        <p>
-        </p>
         <%= render 'shared/feed' , :collection => @feed_items %>
-        <%= link_to "Sign up now!", signup_path, :class => 'menu_button' %>
 <% end %>

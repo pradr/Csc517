@@ -54,12 +54,9 @@ end
 
   def destroy
     user = User.find(params[:id])
-    if user == current_user
-            flash[:error] = "Sorry..Not permitted."
-    else
-            user.destroy
+            if user.destroy
             flash[:success] = "User destroyed."
-    end
+            end
     redirect_to users_path
   end
 
@@ -89,6 +86,6 @@ end
     end
 
     def admin_user
-      redirect_to(root_path) unless current_user.admin?
+      redirect_to(root_path) unless Admin.where(:user_id => current_user.id).count == 1
     end
 end

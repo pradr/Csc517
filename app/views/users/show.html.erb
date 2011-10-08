@@ -1,3 +1,6 @@
+<% if signed_in? %>
+        <%= render 'shared/user_info', :collection => @user %>
+<% end %>
 <table class="profile">
         <tr>
                 <td class="main">
@@ -7,11 +10,6 @@
                                         <%= render 'shared/feed' , :collection => @feed_items %>
                                 </table>
                         <% end %>
-                </td>
-                <td  class="sidebar round">
-                        <strong>Name</strong> <%= @user.name %><br />
-                        <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-                        <strong>Microposts</strong> <%= @user.microposts.count %>
                 </td>
         </tr>
 </table>

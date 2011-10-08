@@ -21,12 +21,12 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     flash[:success] = "Comment Deleted!"
-    redirect_back_or root_path
+    redirect_to root_path
   end
 
   private
     def authorized_user
-      @comment = current_user.comments.find_by_id(params[:id])
+      @comment = Comment.find_by_id(params[:id])
       redirect_to root_path if @comment.nil?
     end
 

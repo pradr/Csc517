@@ -11,8 +11,8 @@
                                 |Posts: <%= user.microposts.count %>
                                 |Comments: <%= user.comments.count %>
                                 |votes : <%= user.votes.count %>
-                                | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
-                                        :title => "Delete #{user.name}" %>
+                                | <%= link_to "delete", user, :method => :delete, :confirm => "Delete User?",
+                                        :title => "Delete" %>
                                         <% if Admin.where(:user_id => user.id).count != 1 %>
                                 | <%= link_to "Create Admin", {:action => 'create_admin', :id => user.id}%>
 

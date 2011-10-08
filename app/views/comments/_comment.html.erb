@@ -1,24 +1,30 @@
 <tr>
-        <td class="micropost">
+        <td class="content">
                 <span class="user"><%= link_to comment.user.name, comment.user %></span>
                 <span class="content"><%= comment.content %></span>
-                <span class="timestamp">Posted <%= time_ago_in_words(comment.created_at) %> ago.</span>
+                <span class="timestamp">Commented <%= time_ago_in_words(comment.created_at) %> ago. </span>
                 <span class="timestamp"> <%= pluralize(Comment.find(comment.id).votes.count, 'Vote') %></span>
         </td>
-        <% if current_user?(comment.user) %>
-                <td>
-                        <%= link_to "delete", comment, 
+        <% if signed_in? %>
+                <% if current_user?(comment.user)  || Admin.where(:user_id => current_user.id).count == 1 %>
+                <td class="close">
+                        <%= link_to link_to image_tag('button_delete_green.gif'), comment, 
                                 :method => :delete, 
                                 :confirm => "You sure?",
                                 :title => comment.content %>
-                </td>
-        <% else %>
-                <% if signed_in? %>
-                <td>
-                        <%= link_to "Like", :method => :post, :controller => 'votes', 
-                                :action => 'create', :post_id => 0 , :comment_id => comment.id,  :option => 2%>
                 </td>
 
                 <% end %>
         <% end %>
 </tr>
+        <% if signed_in? %>
+                <% if !(current_user?(comment.user)) %>
+                        <tr>
+
+                <td>
+                        <%= link_to "Like", :method => :post, :controller => 'votes', 
+                                :action => 'create', :post_id => 0 , :comment_id => comment.id,  :option => 2%>
+                        </td>
+                </tr>
+                <% end %>
+                <% end %>

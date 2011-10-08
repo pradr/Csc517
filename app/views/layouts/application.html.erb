@@ -20,25 +20,23 @@
          </head>
          <body>
 
-                 <header>
-                 <div class = "container">
-
-                         <%= render 'layouts/header' %>
-                 </div>
-                 </header>
                  <div class="container">
-                         <section class="round">
-                         <% if signed_in? %>
-                                <%= render 'shared/user_info' %>
-                         <% end %>
+                         <div class="livebook"> <h1>LiveBook</h1></div>
+                         <div class="menu">
+                                 <%= render 'layouts/header' %>
+                         </div>
+                         <section >
+                         <%= yield %>
+                         </section>
+                 </div>
+                 <div class="flash">
                          <% flash.each do |key, msg| %>
                          <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_ #{key}" %>
                          <% content_tag :script, :type => "text/javascript" do %>
                                  setTimeout("new Effect.Fade('notice_<%= key %>');", 15000);
-                          <% end %>
-                          <% end %>
-                         <%= yield %>
-                         </section>
+                         <% end %> 
+                         <% end %>
+                 
                  </div>
 
          </body>

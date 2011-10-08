@@ -1,8 +1,8 @@
 <% if @feed_items.any? %>
-        <table class="microposts" summary="Status feed">
+        <table class="microposts">
                 <%= render :partial => 'shared/feed_item', 
                         :collection => @feed_items %>
-        </table>
+                </table>
         <%= will_paginate @feed_items %>
 <% end %>
 

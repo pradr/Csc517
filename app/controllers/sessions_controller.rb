@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
       sign_in user
       #redirect_back_or user
-      redirect_to user
+      redirect_to root_path
       # Sign the user in and redirect to the user's show page.
     end
    end
