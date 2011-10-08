@@ -4,11 +4,10 @@ gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
+gem 'heroku'
 gem 'sqlite3'
 gem 'will_paginate', '3.0.pre2'
-#gem 'pg', '~> 0.11', :group => :pg
-
+gem 'pg', :group => :production
 gem 'therubyracer'
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,10 +34,16 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '2.6.1'
+#  gem 'rspec-rails', '2.6.1'
   gem "capybara"
   gem 'webrat', '0.7.1'
   gem 'factory_girl_rails', '1.0'
+end
+
+
+group :production do
+  # gems specifically for Heroku go here
+  gem "pg"
 end
 #group :test do
   # Pretty printed test output
