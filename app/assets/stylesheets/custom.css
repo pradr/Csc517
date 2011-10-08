@@ -23,9 +23,10 @@ body {
         top: 92%;
 }
 
-.livebook {
+div.livebook {
+        font-family:Verdana,sans-serif;
         position:absolute;
-        color:#fff;
+        color:#336600;
         left: -180px;
         top: 2px;
 }
@@ -267,6 +268,10 @@ table.microposts tr td.micropost {
   color:#336600;
   vertical-align: top;
   padding-top: 10px;
+}
+
+table.microposts tr td.micropost span.content {
+        font-style: bold;
 }
 
 table.microposts tr td.micropost span.timestamp {
